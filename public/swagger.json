@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Our Smart Contracts are computer programs that automatically execute, control or monitor legally relevant transactions and actions defined by a contract or a business agreement.",
+    "description": "Nuestros Smart Contracts son programas informáticos que ejecutan, controlan o supervisan automáticamente las transacciones y acciones legalmente relevantes definidas por un contrato o un acuerdo comercial.",
     "version": "v1",
-    "title": "Seif for  developers API",
+    "title": "Seif para desarrolladores API",
     "termsOfService": "https://seif.io/",
     "contact": { "email": "juang@seif.com" },
     "license": {
@@ -20,21 +20,20 @@
   "host": "seif.io",
   "basePath": "/v2",
   "tags": [
-    { "name": "Enrrollment", "description": "Pending" },
     {
       "name": "Ifrit",
-      "description": "Operations about user",
+      "description": "Apolo UI open source",
       "externalDocs": {
-        "description": "Find out more about our store",
+        "description": "Si deseas saber haz click aqui",
         "url": "http://swagger.io"
       }
     },
 
     {
       "name": "Fenrir",
-      "description": "Everything about your Pets",
+      "description": "Conexion de api para clientes y registro en padron de provedores",
       "externalDocs": {
-        "description": "Find out more",
+        "description": "Si deseas saber haz click aqui",
         "url": "https://seif.io"
       }
     },
