@@ -31,7 +31,15 @@
     },
 
     {
-      "name": "Blockchain",
+      "name": "Fenrir",
+      "description": "Everything about your Pets",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://seif.io"
+      }
+    },
+    {
+      "name": "Chaincode Identidad",
       "description": "Estamos construyendo un ecosistema blockchain con nuestros clientes y sus clientes, y sus proveedores, para poder ofrecerle una blockchain verdaderamente descentralizada.",
       "externalDocs": {
         "description": "Si deseas saber haz click aqui",
@@ -39,12 +47,32 @@
       }
     },
     {
-      "name": "Fenrir",
-      "description": "Everything about your Pets",
+      "name": "Chaincode Contrato",
+      "description": "Estamos construyendo un ecosistema blockchain con nuestros clientes y sus clientes, y sus proveedores, para poder ofrecerle una blockchain verdaderamente descentralizada.",
       "externalDocs": {
-        "description": "Find out more",
-        "url": "https://seif.io"
+        "description": "Si deseas saber haz click aqui",
+        "url": "https://seif.io/#ecosystem"
       }
+    },
+    {
+      "name": "Chaincode Transaccion",
+      "description": "Estamos construyendo un ecosistema blockchain con nuestros clientes y sus clientes, y sus proveedores, para poder ofrecerle una blockchain verdaderamente descentralizada.",
+      "externalDocs": {
+        "description": "Si deseas saber haz click aqui",
+        "url": "https://seif.io/#ecosystem"
+      }
+    },
+    {
+      "name": "Chaincode Business Rule",
+      "description": "Estamos construyendo un ecosistema blockchain con nuestros clientes y sus clientes, y sus proveedores, para poder ofrecerle una blockchain verdaderamente descentralizada.",
+      "externalDocs": {
+        "description": "Si deseas saber haz click aqui",
+        "url": "https://seif.io/#ecosystem"
+      }
+    },
+    {
+      "name": "Misc",
+      "description": ""
     }
   ],
 
@@ -86,7 +114,7 @@
     "/channels/mychannel/chaincodes/identity": {
       "get": {
         "summary": "Consulta Identidad",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Identidad"],
         "operationId": "ConsultaIdentidad",
         "deprecated": false,
         "produces": ["application/json"],
@@ -125,7 +153,7 @@
       },
       "post": {
         "summary": "Registra Identidad",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Identidad"],
         "operationId": "RegistraIdentidad",
         "deprecated": false,
         "produces": ["application/json"],
@@ -158,7 +186,7 @@
     "/channels/mychannel/chaincodes/identidad": {
       "get": {
         "summary": "Consulta por Asset",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Identidad"],
         "operationId": "ConsultaporAsset",
         "deprecated": false,
         "produces": ["application/json"],
@@ -199,7 +227,7 @@
     "/channels/mychannel/chaincodes/participant": {
       "post": {
         "summary": "Registra Participante",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Contrato"],
         "operationId": "RegistraParticipante",
         "deprecated": false,
         "produces": ["application/json"],
@@ -230,7 +258,7 @@
       },
       "get": {
         "summary": "Consulta Participante",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Contrato"],
         "operationId": "ConsultaParticipante",
         "deprecated": false,
         "produces": ["application/json"],
@@ -271,7 +299,7 @@
     "/channels/mychannel/chaincodes/agreement": {
       "post": {
         "summary": "Registra Contrato",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Contrato"],
         "operationId": "RegistraContrato",
         "deprecated": false,
         "produces": ["application/json"],
@@ -302,7 +330,7 @@
       },
       "get": {
         "summary": "Consulta Contrato",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Contrato"],
         "operationId": "ConsultaContrato",
         "deprecated": false,
         "produces": ["application/json"],
@@ -343,7 +371,7 @@
     "/channels/mychannel/chaincodes/transaction": {
       "post": {
         "summary": "Registra Transaccion",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Transaccion"],
         "operationId": "RegistraTransaccion",
         "deprecated": false,
         "produces": ["application/json"],
@@ -374,7 +402,7 @@
       },
       "get": {
         "summary": "Consulta Transaccion",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Transaccion"],
         "operationId": "ConsultaTransaccion",
         "deprecated": false,
         "produces": ["application/json"],
@@ -415,7 +443,7 @@
     "/channels/mychannel/chaincodes/businessrule": {
       "post": {
         "summary": "Registra Business Rule",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Business Rule"],
         "operationId": "RegistraBusinessRule",
         "deprecated": false,
         "produces": ["application/json"],
@@ -446,7 +474,7 @@
       },
       "get": {
         "summary": "Consulta Business Rule",
-        "tags": ["Blockchain"],
+        "tags": ["Chaincode Business Rule"],
         "operationId": "ConsultaBusinessRule",
         "deprecated": false,
         "produces": ["application/json"],
@@ -487,7 +515,7 @@
     "/": {
       "get": {
         "summary": "Status API",
-        "tags": ["Blockchain"],
+        "tags": ["Misc"],
         "operationId": "StatusAPI",
         "deprecated": false,
         "produces": ["application/json"],
@@ -511,7 +539,7 @@
     "/users": {
       "post": {
         "summary": "Registrar Usuario",
-        "tags": ["Blockchain"],
+        "tags": ["Misc"],
         "operationId": "RegistrarUsuario",
         "deprecated": false,
         "produces": ["application/json"],
@@ -544,7 +572,7 @@
     "/users/login": {
       "post": {
         "summary": "Login Usuario",
-        "tags": ["Blockchain"],
+        "tags": ["Misc"],
         "operationId": "LoginUsuario",
         "deprecated": false,
         "produces": ["application/json"],
