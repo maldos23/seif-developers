@@ -6,7 +6,7 @@ function App() {
     <RedocStandalone
       specUrl="./swagger.json"
       options={{
-        nativeScrollbars: true,
+        nativeScrollbars: false,
         theme: { colors: { primary: { main: "rgb(9, 60, 251)" } } },
       }}
     />

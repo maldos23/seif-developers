@@ -29,20 +29,13 @@
         "url": "http://swagger.io"
       }
     },
-    {
-      "name": "Explorer",
-      "description": "Operations about user",
-      "externalDocs": {
-        "description": "Find out more about our store",
-        "url": "http://swagger.io"
-      }
-    },
+
     {
       "name": "Blockchain",
-      "description": "Operations about user",
+      "description": "Estamos construyendo un ecosistema blockchain con nuestros clientes y sus clientes, y sus proveedores, para poder ofrecerle una blockchain verdaderamente descentralizada.",
       "externalDocs": {
-        "description": "Find out more about our store",
-        "url": "http://swagger.io"
+        "description": "Si deseas saber haz click aqui",
+        "url": "https://seif.io/#ecosystem"
       }
     },
     {
@@ -55,149 +48,808 @@
     }
   ],
 
-  "schemes": ["https", "http"],
+  "schemes": ["https"],
+
   "paths": {
-    "/pet/{petId}/uploadImage": {
-      "post": {
-        "tags": ["Enrrollment"],
-        "summary": "uploads an image",
-        "description": "",
-        "operationId": "uploadFile",
-        "consumes": ["multipart/form-data"],
-        "produces": ["application/json"],
+    "/api/search/:id": {
+      "get": {
+        "summary": "Busqueda de contrato, usuario o transacción",
+        "tags": ["Ifrit"],
         "parameters": [
           {
-            "name": "petId",
-            "in": "path",
-            "description": "ID of pet to update",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "additionalMetadata",
-            "in": "formData",
-            "description": "Additional data to pass to server",
+            "name": "Authorization",
+            "in": "header",
             "required": false,
+            "default": "Bearer {token}",
             "type": "string"
           },
           {
-            "name": "file",
-            "in": "formData",
-            "description": "file to upload",
-            "required": false,
-            "type": "file"
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "in": "path",
+            "description": "Introduce el número de tu contrato, usuario o transacción"
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": { "$ref": "#/definitions/ApiResponse" }
+            "description": "Repuesta de busqueda correcta",
+            "headers": {}
+          },
+          "400": {
+            "description": "Respuesta de busqueda incorrecta",
+            "headers": {}
           }
-        },
-        "security": [{ "petstore_auth": ["write:pets", "read:pets"] }]
+        }
       }
-    }
-  },
-  "securityDefinitions": {
-    "api_key": { "type": "apiKey", "name": "api_key", "in": "header" },
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
-      "flow": "implicit",
-      "scopes": {
-        "read:pets": "read your pets",
-        "write:pets": "modify pets in your account"
+    },
+    "/channels/mychannel/chaincodes/identity": {
+      "get": {
+        "summary": "Consulta Identidad",
+        "tags": ["Blockchain"],
+        "operationId": "ConsultaIdentidad",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "args",
+            "in": "query",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "fcn",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "summary": "Registra Identidad",
+        "tags": ["Blockchain"],
+        "operationId": "RegistraIdentidad",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegistraIdentidadRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/channels/mychannel/chaincodes/identidad": {
+      "get": {
+        "summary": "Consulta por Asset",
+        "tags": ["Blockchain"],
+        "operationId": "ConsultaporAsset",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "args",
+            "in": "query",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "fcn",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/channels/mychannel/chaincodes/participant": {
+      "post": {
+        "summary": "Registra Participante",
+        "tags": ["Blockchain"],
+        "operationId": "RegistraParticipante",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegistraParticipanteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "Consulta Participante",
+        "tags": ["Blockchain"],
+        "operationId": "ConsultaParticipante",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "args",
+            "in": "query",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "fcn",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/channels/mychannel/chaincodes/agreement": {
+      "post": {
+        "summary": "Registra Contrato",
+        "tags": ["Blockchain"],
+        "operationId": "RegistraContrato",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegistraContratoRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "Consulta Contrato",
+        "tags": ["Blockchain"],
+        "operationId": "ConsultaContrato",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "args",
+            "in": "query",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "fcn",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/channels/mychannel/chaincodes/transaction": {
+      "post": {
+        "summary": "Registra Transaccion",
+        "tags": ["Blockchain"],
+        "operationId": "RegistraTransaccion",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegistraTransaccionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "Consulta Transaccion",
+        "tags": ["Blockchain"],
+        "operationId": "ConsultaTransaccion",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "args",
+            "in": "query",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "fcn",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/channels/mychannel/chaincodes/businessrule": {
+      "post": {
+        "summary": "Registra Business Rule",
+        "tags": ["Blockchain"],
+        "operationId": "RegistraBusinessRule",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegistraBusinessRuleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "Consulta Business Rule",
+        "tags": ["Blockchain"],
+        "operationId": "ConsultaBusinessRule",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "args",
+            "in": "query",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "fcn",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Status API",
+        "tags": ["Blockchain"],
+        "operationId": "StatusAPI",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Registrar Usuario",
+        "tags": ["Blockchain"],
+        "operationId": "RegistrarUsuario",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegistrarUsuarioRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Login Usuario",
+        "tags": ["Blockchain"],
+        "operationId": "LoginUsuario",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LoginUsuarioRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
       }
     }
   },
   "definitions": {
-    "ApiResponse": {
-      "type": "object",
-      "properties": {
-        "code": { "type": "integer", "format": "int32" },
-        "type": { "type": "string" },
-        "message": { "type": "string" }
-      }
-    },
-    "Category": {
-      "type": "object",
-      "properties": {
-        "id": { "type": "integer", "format": "int64" },
-        "name": { "type": "string" }
+    "RegistraIdentidadRequest": {
+      "title": "RegistraIdentidadRequest",
+      "example": {
+        "fcn": "createIdentity",
+        "peers": [
+          "peer0.org1.midominio.com",
+          "peer0.org2.midominio.com",
+          "peer0.org3.midominio.com"
+        ],
+        "chaincodeName": "identity",
+        "channelName": "mychannel",
+        "args": [
+          "CODE01",
+          "AUDI111",
+          "xxx",
+          "xxx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "null",
+          "null",
+          "null"
+        ]
       },
-      "xml": { "name": "Category" }
-    },
-    "Pet": {
       "type": "object",
-      "required": ["name", "photoUrls"],
       "properties": {
-        "id": { "type": "integer", "format": "int64" },
-        "category": { "$ref": "#/definitions/Category" },
-        "name": { "type": "string", "example": "doggie" },
-        "photoUrls": {
-          "type": "array",
-          "xml": { "wrapped": true },
-          "items": { "type": "string", "xml": { "name": "photoUrl" } }
+        "fcn": {
+          "type": "string"
         },
-        "tags": {
+        "peers": {
           "type": "array",
-          "xml": { "wrapped": true },
-          "items": { "xml": { "name": "tag" }, "$ref": "#/definitions/Tag" }
+          "items": {
+            "type": "string"
+          }
         },
-        "status": {
-          "type": "string",
-          "description": "pet status in the store",
-          "enum": ["available", "pending", "sold"]
+        "chaincodeName": {
+          "type": "string"
+        },
+        "channelName": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
-      "xml": { "name": "Pet" }
+      "required": ["fcn", "peers", "chaincodeName", "channelName", "args"]
     },
-    "Tag": {
-      "type": "object",
-      "properties": {
-        "id": { "type": "integer", "format": "int64" },
-        "name": { "type": "string" }
+    "RegistraParticipanteRequest": {
+      "title": "RegistraParticipanteRequest",
+      "example": {
+        "fcn": "createParticipant",
+        "peers": [
+          "peer0.org1.midominio.com",
+          "peer0.org2.midominio.com",
+          "peer0.org3.midominio.com"
+        ],
+        "chaincodeName": "participant",
+        "channelName": "mychannel",
+        "args": ["88889", "AUDI111", "xxx", "xxx", "xx", "xx", "xx", "xx"]
       },
-      "xml": { "name": "Tag" }
-    },
-    "Order": {
       "type": "object",
       "properties": {
-        "id": { "type": "integer", "format": "int64" },
-        "petId": { "type": "integer", "format": "int64" },
-        "quantity": { "type": "integer", "format": "int32" },
-        "shipDate": { "type": "string", "format": "date-time" },
-        "status": {
-          "type": "string",
-          "description": "Order Status",
-          "enum": ["placed", "approved", "delivered"]
+        "fcn": {
+          "type": "string"
         },
-        "complete": { "type": "boolean" }
-      },
-      "xml": { "name": "Order" }
-    },
-    "User": {
-      "type": "object",
-      "properties": {
-        "id": { "type": "integer", "format": "int64" },
-        "username": { "type": "string" },
-        "firstName": { "type": "string" },
-        "lastName": { "type": "string" },
-        "email": { "type": "string" },
-        "password": { "type": "string" },
-        "phone": { "type": "string" },
-        "userStatus": {
-          "type": "integer",
-          "format": "int32",
-          "description": "User Status"
+        "peers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "chaincodeName": {
+          "type": "string"
+        },
+        "channelName": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
-      "xml": { "name": "User" }
+      "required": ["fcn", "peers", "chaincodeName", "channelName", "args"]
+    },
+    "RegistraContratoRequest": {
+      "title": "RegistraContratoRequest",
+      "example": {
+        "fcn": "createAgreement",
+        "peers": [
+          "peer0.org1.midominio.com",
+          "peer0.org2.midominio.com",
+          "peer0.org3.midominio.com"
+        ],
+        "chaincodeName": "agreement",
+        "channelName": "mychannel",
+        "args": [
+          "dummy_test89999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+          "88889",
+          "dummy_test3_xname3333",
+          "dummy_test3_xname4444",
+          "dummy_test3_xname5555",
+          "dummy_test3_xname666",
+          "dummy_test3_xname777",
+          "dummy_test3_xname88888",
+          "dato1|dato2|dato3|dato4",
+          "aaaa",
+          "qqqqq"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "fcn": {
+          "type": "string"
+        },
+        "peers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "chaincodeName": {
+          "type": "string"
+        },
+        "channelName": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["fcn", "peers", "chaincodeName", "channelName", "args"]
+    },
+    "RegistraTransaccionRequest": {
+      "title": "RegistraTransaccionRequest",
+      "example": {
+        "fcn": "createTransaction",
+        "peers": [
+          "peer0.org1.midominio.com",
+          "peer0.org2.midominio.com",
+          "peer0.org3.midominio.com"
+        ],
+        "chaincodeName": "transaction",
+        "channelName": "mychannel",
+        "args": ["8888", "AUDI111", "xxx", "xxx", "xx", "xx", "xx", "xx"]
+      },
+      "type": "object",
+      "properties": {
+        "fcn": {
+          "type": "string"
+        },
+        "peers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "chaincodeName": {
+          "type": "string"
+        },
+        "channelName": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["fcn", "peers", "chaincodeName", "channelName", "args"]
+    },
+    "RegistraBusinessRuleRequest": {
+      "title": "RegistraBusinessRuleRequest",
+      "example": {
+        "fcn": "createBusinessrule",
+        "peers": [
+          "peer0.org1.midominio.com",
+          "peer0.org2.midominio.com",
+          "peer0.org3.midominio.com"
+        ],
+        "chaincodeName": "businessrule",
+        "channelName": "mychannel",
+        "args": [
+          "CCCCCC",
+          "AUDI111",
+          "xxx",
+          "xxx",
+          "xx",
+          "xx",
+          "xx",
+          "xx",
+          "x111111x",
+          "xx1111"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "fcn": {
+          "type": "string"
+        },
+        "peers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "chaincodeName": {
+          "type": "string"
+        },
+        "channelName": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["fcn", "peers", "chaincodeName", "channelName", "args"]
+    },
+    "RegistrarUsuarioRequest": {
+      "title": "RegistrarUsuarioRequest",
+      "example": {
+        "username": "jorge2",
+        "orgName": "Org1"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "orgName": {
+          "type": "string"
+        }
+      },
+      "required": ["username", "orgName"]
+    },
+    "LoginUsuarioRequest": {
+      "title": "LoginUsuarioRequest",
+      "example": {
+        "username": "jorge1",
+        "orgName": "Org1"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "orgName": {
+          "type": "string"
+        }
+      },
+      "required": ["username", "orgName"]
     }
-  },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
   }
 }
