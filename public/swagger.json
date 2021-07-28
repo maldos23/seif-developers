@@ -20,7 +20,7 @@
   "host": "seif.io",
   "basePath": "/v2",
   "tags": [
-    { "name": "Enrrollment", "description": "Access to Petstore orders" },
+    { "name": "Enrrollment", "description": "Pending" },
     {
       "name": "Ifrit",
       "description": "Operations about user",
@@ -36,6 +36,14 @@
       "externalDocs": {
         "description": "Find out more",
         "url": "https://seif.io"
+      }
+    },
+    {
+      "name": "Chaincode session",
+      "description": "Estamos construyendo un ecosistema blockchain con nuestros clientes y sus clientes, y sus proveedores, para poder ofrecerle una blockchain verdaderamente descentralizada.",
+      "externalDocs": {
+        "description": "Si deseas saber haz click aqui",
+        "url": "https://seif.io/#ecosystem"
       }
     },
     {
@@ -69,10 +77,6 @@
         "description": "Si deseas saber haz click aqui",
         "url": "https://seif.io/#ecosystem"
       }
-    },
-    {
-      "name": "Misc",
-      "description": ""
     }
   ],
 
@@ -515,7 +519,7 @@
     "/": {
       "get": {
         "summary": "Status API",
-        "tags": ["Misc"],
+        "tags": ["Chaincode session"],
         "operationId": "StatusAPI",
         "deprecated": false,
         "produces": ["application/json"],
@@ -539,7 +543,7 @@
     "/users": {
       "post": {
         "summary": "Registrar Usuario",
-        "tags": ["Misc"],
+        "tags": ["Chaincode session"],
         "operationId": "RegistrarUsuario",
         "deprecated": false,
         "produces": ["application/json"],
@@ -572,7 +576,7 @@
     "/users/login": {
       "post": {
         "summary": "Login Usuario",
-        "tags": ["Misc"],
+        "tags": ["Chaincode session"],
         "operationId": "LoginUsuario",
         "deprecated": false,
         "produces": ["application/json"],
@@ -601,9 +605,271 @@
           }
         }
       }
+    },
+
+    "/authenticate": {
+      "get": {
+        "summary": "AuthLV",
+        "tags": ["Fenrir"],
+        "operationId": "AuthLV",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "X-TenantID",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/hook/reference": {
+      "post": {
+        "summary": "Crear referencia",
+        "tags": ["Fenrir"],
+        "operationId": "Crearreferencia",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Client_Secret",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CrearreferenciaRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/oauth/generate": {
+      "post": {
+        "summary": "OAUTH SEIF",
+        "tags": ["Fenrir"],
+        "operationId": "OAUTHSEIF",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/lv/certificate/generate": {
+      "post": {
+        "summary": "Generate",
+        "tags": ["Fenrir"],
+        "operationId": "Generate",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GenerateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/lv/credit-info/{code}/{token}": {
+      "get": {
+        "summary": "Info Credit",
+        "tags": ["Fenrir"],
+        "operationId": "InfoCredit",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
     }
   },
   "definitions": {
+    "CrearreferenciaRequest": {
+      "title": "CrearreferenciaRequest",
+      "example": {
+        "idValidacion": 2456346,
+        "idReferencia": 3434545,
+        "nombresCliente": "Pablo hernandez",
+        "nombresReferencia": "Juan Vazquez",
+        "telefonoReferencia": "55555555",
+        "tipoReferencia": "FAMILIAR",
+        "parentesco": "PAPA",
+        "estadoVerificacion": "APROBADO"
+      },
+      "type": "object",
+      "properties": {
+        "idValidacion": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "idReferencia": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nombresCliente": {
+          "type": "string"
+        },
+        "nombresReferencia": {
+          "type": "string"
+        },
+        "telefonoReferencia": {
+          "type": "string"
+        },
+        "tipoReferencia": {
+          "type": "string"
+        },
+        "parentesco": {
+          "type": "string"
+        },
+        "estadoVerificacion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "idValidacion",
+        "idReferencia",
+        "nombresCliente",
+        "nombresReferencia",
+        "telefonoReferencia",
+        "tipoReferencia",
+        "parentesco",
+        "estadoVerificacion"
+      ]
+    },
+    "ActualizarbotRequest": {
+      "title": "ActualizarbotRequest",
+      "example": {
+        "idReferencia": 3434549,
+        "telefonoReferencia": "+525533654162",
+        "estadoVerificacion": "RECHAZADO"
+      },
+      "type": "object",
+      "properties": {
+        "idReferencia": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "telefonoReferencia": {
+          "type": "string"
+        },
+        "estadoVerificacion": {
+          "type": "string"
+        }
+      },
+      "required": ["idReferencia", "telefonoReferencia", "estadoVerificacion"]
+    },
+    "GenerateRequest": {
+      "title": "GenerateRequest",
+      "example": {
+        "credito": "202324",
+        "hash": "d5385552c92f03c0d17839f0620ab0427e0c9534"
+      },
+      "type": "object",
+      "properties": {
+        "credito": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        }
+      },
+      "required": ["credito", "hash"]
+    },
+    "GeneratesyncRequest": {
+      "title": "GeneratesyncRequest",
+      "example": {
+        "credito": "202324",
+        "hash": "d5385552c92f03c0d17839f0620ab0427e0c9534"
+      },
+      "type": "object",
+      "properties": {
+        "credito": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        }
+      },
+      "required": ["credito", "hash"]
+    },
     "RegistraIdentidadRequest": {
       "title": "RegistraIdentidadRequest",
       "example": {
