@@ -1,20 +1,35 @@
 h1 {
   font-weight: bold !important;
   font-size: 65px !important;
-  background: -webkit-linear-gradient(#00c6ff, #0072ff ) !important;
+  background: -webkit-linear-gradient(#00c6ff, #0072ff) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 h2 {
-  font-weight:400 !important;
+  font-weight: 400 !important;
   font-size: 30px !important;
-  line-height: 45px !important; 
-  background: -webkit-linear-gradient( #00c6ff, #0072ff ) !important;
+  line-height: 45px !important;
+  background: -webkit-linear-gradient(#00c6ff, #0072ff) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
+.sc-gtsrHT {
+  visibility: hidden;
+}
 
+.sc-dlnjwi {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  font-weight: bold !important;
+  font-size: 65px !important;
+  line-height: 85px !important;
+  background: -webkit-linear-gradient(#00c6ff, #0072ff) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
 
 .sc-csTbgd {
   margin: 20px;

@@ -7,7 +7,7 @@ function App() {
       specUrl="./swagger.json"
       options={{
         nativeScrollbars: false,
-        theme: { colors: { primary: { main: "rgb(9, 60, 251)" } } },
+        theme: { colors: { primary: { main: "#0072ff" } } },
       }}
     />
   );
