@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "description": "Our Smart Contracts are computer programs that automatically execute, control or monitor legally relevant transactions and actions defined by a contract or a business agreement.",
-    "version": "1.0.0",
-    "title": "Seif for  developers",
+    "version": "v1",
+    "title": "Seif for  developers API",
     "termsOfService": "https://seif.io/",
     "contact": { "email": "juang@seif.com" },
     "license": {

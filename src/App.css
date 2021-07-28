@@ -1,15 +1,16 @@
 h1 {
   font-weight: bold !important;
-  font-size: 72px !important;
+  font-size: 65px !important;
   background: -webkit-linear-gradient(#00c6ff, #0072ff ) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 h2 {
-  font-weight: bold !important;
-  font-size: 42px !important;
-  background: -webkit-linear-gradient( #0cebeb, #20e3b2, #29ffc6) !important;
+  font-weight:400 !important;
+  font-size: 30px !important;
+  line-height: 45px !important; 
+  background: -webkit-linear-gradient( #00c6ff, #0072ff ) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
