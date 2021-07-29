@@ -7,7 +7,25 @@ function App() {
       specUrl="./swagger.json"
       options={{
         nativeScrollbars: false,
-        theme: { colors: { primary: { main: "#0072ff" } } },
+        theme: {
+          typography:{ 
+            fontFamily:"Roboto"
+          },
+          colors: {
+            primary: { main: "#00c6ff" },
+            responses: {
+              success: {
+                backgroundColor: "#a8ff78",
+                color: "#000",
+               
+              },
+              error: {
+                backgroundColor: "#ee0979",
+                color: "#FFF",
+              },
+            },
+          },
+        },
       }}
     />
   );
