@@ -21,6 +21,14 @@
   "basePath": "/v2",
   "tags": [
     {
+      "name": "Enrrollment",
+      "description": "Seif Ocr, este sistema se dedica a la indetificacion de usuarios mediante mecanismo de KYC",
+      "externalDocs": {
+        "description": "Si deseas saber haz click aqui",
+        "url": "http://swagger.io"
+      }
+    },
+    {
       "name": "Ifrit",
       "description": "Apolo UI open source",
       "externalDocs": {
@@ -79,9 +87,445 @@
     }
   ],
 
+  "servers": [
+    {
+      "url": "https://enrrollment.seif.io",
+      "description": "Servidor de enrrollment"
+    }
+  ],
+
   "schemes": ["https"],
 
   "paths": {
+    "/enrrollment/api/": {
+      "get": {
+        "summary": "Ir a usuario",
+        "tags": ["Enrrollment"],
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "type": "string",
+            "in": "query",
+            "description": "Id de usuario"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/enrrollment/api/byCurp": {
+      "get": {
+        "summary": "Ir a usuario por CURP",
+        "description": "En este servicio se púeden realizar busquedas mediante el curp del usuario (Exclusivo para mexicanos) si deseas saber mas <a href='https://www.gob.mx/segob/acciones-y-programas/clave-unica-de-registro-de-poblacion-curp'>haz click aqui</a>",
+        "tags": ["Enrrollment"],
+        "parameters": [
+          {
+            "name": "curp",
+            "required": true,
+            "type": "string",
+            "in": "query",
+            "description": "Curp de usuario"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/enrrollment/api/byContact": {
+      "get": {
+        "summary": "Ir a usuario por contacto",
+        "description": "En este servicio se púeden realizar busquedas mediante el contacto o telefono",
+        "tags": ["Enrrollment"],
+
+        "parameters": [
+          {
+            "name": "contact",
+            "required": true,
+            "type": "string",
+            "in": "query",
+            "description": "Contacto de usuario"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/enrrollment/api/contactInformation": {
+      "post": {
+        "summary": "Añadir informacion de usuario",
+        "description": "En este servicio puedes añadir la informacion del usuario",
+        "tags": ["Enrrollment"],
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "title": "contactInformation",
+              "example": {
+                "user": {
+                  "email": "example@example.com",
+                  "phone": "+55555555",
+                  "id": "XXXXXXXXXXX",
+                  "phone_verified": true,
+                  "mail_verified": false
+                }
+              },
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "phone_verified": {
+                  "type": "boolean"
+                },
+                "mail_verified": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "email",
+                "phone",
+                "id",
+                "phone_verified",
+                "mail_verified"
+              ]
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/enrrollment/api/confirmationCode": {
+      "post": {
+        "summary": "Enviar codigo de confirmacion",
+        "description": "Este servicio puede enviar un codigo de confirmacion via sms",
+        "tags": ["Enrrollment"],
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "title": "contactInformation",
+              "example": {
+                "confirmation": "ID_USER"
+              },
+              "type": "object",
+              "properties": {
+                "confirmation": {
+                  "type": "string"
+                }
+              },
+              "required": ["confirmation"]
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Renvia codigo de confirmacion",
+        "description": "Este servicio puede enviar un codigo de confirmacion via sms",
+        "tags": ["Enrrollment"],
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "title": "contactInformation",
+              "example": {
+                "code": "ID_USER"
+              },
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": ["code"]
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/enrrollment/api/basicInformation": {
+      "put": {
+        "summary": "Editar informacion",
+        "description": "En este servicio puedes añadir la informacion del usuario",
+        "tags": ["Enrrollment"],
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "title": "basicInformation",
+              "example": {
+                "user": {
+                  "email": "example@example.com",
+                  "phone": "+55555555",
+                  "id": "XXXXXXXXXXX"
+                }
+              },
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": ["id"]
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/enrrollment/api/validateIne": {
+      "post": {
+        "summary": "Validar informacion de  Ine (KYC)",
+        "description": "Este mecanismo usa un sistema OCR por lo cual es vital del uso de un FileDataForm",
+        "tags": ["Enrrollment"],
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "title": "basicInformation",
+              "example": {
+                "card_front": "FileData()",
+                "card_back": "FileData()",
+                "curp": "XXXXXXXXXXX"
+              },
+              "type": "object",
+              "properties": {
+                "card_front": {
+                  "type": "FileForm"
+                },
+                "card_back": {
+                  "type": "FileForm"
+                },
+                "curp": {
+                  "type": "string"
+                }
+              },
+              "required": ["curp", "card_front", "card_back"]
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/enrrollment/api/validatePicture": {
+      "post": {
+        "summary": "Validar imagen de usuario (KYC)",
+        "description": "En este servicio se puede añadir el rostro de un usuario mediante IA",
+        "tags": ["Enrrollment"],
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "title": "basicInformation",
+              "example": {
+                "picture": "FileData()"
+              },
+              "type": "object",
+              "properties": {
+                "picture": {
+                  "type": "FileForm"
+                }
+              },
+              "required": ["picture"]
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/enrrollment/api/validateAddress": {
+      "post": {
+        "summary": "Validar domicilio (KYC)",
+        "description": "En este servicio se puede validar el domicilio del usuario",
+        "tags": ["Enrrollment"],
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "title": "validateAddress",
+              "example": {
+                "address_file": "FileData()",
+                "country": "Ca",
+                "city": "Mountain View,",
+                "street": "1600 Amphitheatre Pkwy",
+                "cp": "94043"
+              },
+              "type": "object",
+              "properties": {
+                "address_file": {
+                  "type": "FileForm"
+                },
+                "country": {
+                  "type": "String"
+                },
+                "city": {
+                  "type": "String"
+                },
+                "street": {
+                  "type": "String"
+                },
+                "cp": {
+                  "type": "String"
+                }
+              },
+              "required": [
+                "address_file",
+                "country",
+                "city",
+                "cp",
+                "street",
+                "cp",
+                "cp"
+              ]
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "headers": {}
+          },
+          "400": {
+            "description": "Usuario  desconocido",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/api/search/:id": {
       "get": {
         "summary": "Busqueda de contrato, usuario o transacción",
